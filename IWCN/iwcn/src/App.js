@@ -10,9 +10,14 @@ function App() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:5000/api/post', { phonenumber: phoneNumber });
+            const response = await axios.post('http://localhost:5000/api/post', { phonenumber: phoneNumber }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
             setResponseData(response.data);
             setError('');
+            console.log('Response Headers:', response.headers);
         } catch (error) {
             console.error('Error:', error);
             setError('Error occurred while fetching data from the API.');
