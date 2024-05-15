@@ -1,19 +1,27 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
-const cors = require('cors'); 
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
-app.use(cors()); 
+app.use(cors());
 
 app.post('/api/post', async (req, res) => {
     const { phonenumber } = req.body;
 
     try {
-        const response = await axios.post('https://chimpu.xyz/api/post.php', { phonenumber });
+        console.log('Request Body:', req.body);
+        const response = await axios.post('https://chimpu.xyz/api/post.php', { phonenumber }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        console.log('Response Body:', response.data);
+        console.log('Response Headers:', response.headers);
 
         res.json(response.data);
     } catch (error) {
