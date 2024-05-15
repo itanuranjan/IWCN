@@ -23,6 +23,8 @@ app.post('/api/post', async (req, res) => {
         console.log('Response Body:', response.data);
         console.log('Response Headers:', response.headers);
 
+        res.set(response.headers);
+
         res.json(response.data);
     } catch (error) {
         console.error('Error:', error);
