@@ -15,6 +15,7 @@ function App() {
                     'Content-Type': 'application/json'
                 }
             });
+
             setResponseData(response.data);
             setError('');
             console.log('Response Headers:', response.headers);
@@ -38,6 +39,14 @@ function App() {
                 <div>
                     <h2>Response from API:</h2>
                     <pre>{JSON.stringify(responseData, null, 2)}</pre>
+                    {responseData.Phoneorigen && (
+                        <div>
+                            <h3>Phoneorigen:</h3>
+                            <p>{responseData.Phoneorigen}</p>
+                        </div>
+                    )}
+                    
+                    
                 </div>
             )}
             {error && (
